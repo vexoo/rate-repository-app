@@ -2,9 +2,11 @@ import React from 'react'
 import { Formik } from 'formik'
 import FormikTextInput from './FormikTextInput'
 import { View, Pressable, StyleSheet } from 'react-native'
+import { useNavigate } from "react-router-native"
 import * as yup from 'yup'
 import Text from './Text'
 import theme from '../theme'
+import useSignIn from '../hooks/useSignIn'
 
 const styles = StyleSheet.create({
   container: {
@@ -33,10 +35,20 @@ const initialValues = {
 }
 
 const SignIn = () => {
-  const onSubmit = (values) => {
-    console.log(values)
-  }
+  const [signIn] = useSignIn()
+  const navigate = useNavigate()
 
+  const onSubmit = async (values) => {
+    console.log(values)
+    const { username, password } = values
+    try {
+      const data = await signIn({ username, password })
+      console.log(data)
+      navigate('/')
+    } catch (e) {
+      console.log(e)
+    }
+  }
   return (
     <Formik
       initialValues={initialValues}

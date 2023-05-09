@@ -8,20 +8,29 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     bottom: 10,
-		padding: 10
+    padding: 10
   }
 })
 
-const AppBarTab = ({ label, path }) => (
-  <Pressable
+const AppBarTab = ({ label, path, ...props }) => (
+  /*
+	<Pressable
     onPress={() => {
       console.log(label, 'pressed')
     }}
   >
+	*/
+  //const pressFunction
+  /*
+  <Pressable onPress={onPress}>
     <Link to={path}>
       <Text style={styles.title}>{label}</Text>
     </Link>
   </Pressable>
+	*/
+  <Link to={path} {...props}>
+    <Text style={styles.title}>{label}</Text>
+  </Link>
 )
 
 export default AppBarTab
