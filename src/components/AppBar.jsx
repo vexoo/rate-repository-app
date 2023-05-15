@@ -5,6 +5,7 @@ import theme from '../theme'
 import AppBarTab from './AppBarTab'
 import { GET_USER } from '../graphql/queries'
 import { useAuthStorage } from '../hooks/useAuthStorage'
+import Text from './Text'
 
 const styles = StyleSheet.create({
   container: {
@@ -28,21 +29,17 @@ const AppBar = () => {
   const { loading, error, data } = useQuery(GET_USER)
 
   if (loading) {
-    return <div>Loading...</div>
+    return <Text>Loading...</Text>
   }
 
   if (error) {
     console.log(error)
-    return <div>Something went wrong...</div>
+    return <Text>Something went wrong...</Text>
   }
 
   const user = data?.me
 
-  console.log(user)
-
   const handleLogout = async () => {
-    console.log('hello')
-
     await authStorage.removeAccessToken()
     apolloClient.resetStore()
   }
@@ -52,9 +49,16 @@ const AppBar = () => {
       <ScrollView horizontal contentContainerStyle={styles.tabContainer}>
         <AppBarTab label='Repositories' path='/' />
         {user ? (
-          <AppBarTab label='Sign out' path='/' onPress={handleLogout} />
+          <>
+            <AppBarTab label='Create a review' path='/createReview' />
+            <AppBarTab label='My reviews' path='/myReviews' />
+            <AppBarTab label='Sign out' path='/' onPress={handleLogout} />
+          </>
         ) : (
-          <AppBarTab label='Sign in' path='/signin' />
+          <>
+            <AppBarTab label='Sign in' path='/signIn' />
+            <AppBarTab label='Sign up' path='/signUp' />
+          </>
         )}
       </ScrollView>
     </View>

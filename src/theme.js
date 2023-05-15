@@ -24,6 +24,32 @@ const theme = {
   fontWeights: {
     normal: '400',
     bold: '700'
+  },
+  separator: {
+    height: 10,
+    borderBottomWidth: 5,
+    borderBottomColor: '#ccc'
+  }
+}
+
+const buttonSettings = {
+  borderRadius: 5,
+  padding: 10,
+  alignItems: 'center',
+  marginHorizontal: 5
+}
+
+export const buttonTheme = {
+  button: {
+    ...buttonSettings,
+    backgroundColor: theme.colors.primary
+  },
+  redButton: {
+    ...buttonSettings,
+    backgroundColor: theme.colors.error
+  },
+  buttonText: {
+    color: theme.colors.languageTagText
   }
 }
 

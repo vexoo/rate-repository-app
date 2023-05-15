@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
   }
 })
 
-const abbreviateNumber = (number) => {
+export const abbreviateNumber = (number) => {
   return number >= 1000 ? `${(number / 1000).toFixed(1)}k` : number
 }
 

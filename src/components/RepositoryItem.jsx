@@ -2,15 +2,12 @@ import React from 'react'
 import { View, Image, StyleSheet } from 'react-native'
 import ItemDetails from './ItemDetails'
 import ItemTitle from './ItemTitle'
-import theme from '../theme'
 
 const styles = StyleSheet.create({
   container: {
     display: 'flex',
     flexDirection: 'row',
     padding: 15,
-    borderBottomWidth: 5,
-    borderBottomColor: theme.colors.border
   },
   avatar: {
     width: 50,
@@ -32,7 +29,7 @@ const styles = StyleSheet.create({
 })
 
 const RepositoryItem = ({ repository }) => (
-  <View style={styles.container}>
+  <View testID='repositoryItem' style={styles.container}>
     <Image style={styles.avatar} source={{ uri: repository.ownerAvatarUrl }} />
     <View style={styles.infoContainer}>
       <ItemTitle repository={repository} />
